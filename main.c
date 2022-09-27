@@ -2,7 +2,7 @@
  * main.c
  *
  *  Created on: Sep 11, 2022
- *      Author: Omar Saeed
+ *      Author: Alaa Saeed
  */
 
 #include "STD_Types.h"
@@ -91,12 +91,23 @@ int main(){
 						result=number1/number2;
 						break;
 					case '*':
-						result=number1*number2;
+						if(number1 == 0 || number2 == 0){
+							result = 0;
+						}
+						else{
+							result=number1*number2;
+						}
 						break;
 
 				}
 			if(operator2 == '='){
-				LCD_vid_SendInt(result);
+				// to display 0 if the user multiplied a number by 0
+				if(result == 0){
+					LCD_vid_SendData('0');
+				}
+				else{
+					LCD_vid_SendInt(result);
+				}
 			}
 
 
@@ -114,61 +125,6 @@ int main(){
 
 
 
-
-
-
-
-
-
-
-	/*
-	u8 op1[4], op2[4], operator;
-	s32 number1, number2;
-	s32 result;
-
-
-
-	number1 = kpd_Get_Fnum(op1);
-
-	while(1){
-		u8 z = kpd_Get_PressedKey();
-
-		if(z!= 101){
-
-			LCD_vid_SendData(z);
-			operator = z;
-
-			break;
-			}
-	}
-
-
-
-	number2 = kpd_Get_Lnum(op2);
-
-
-	switch(operator){
-			case '+':
-				result=number1+number2;
-				break;
-			case '-':
-				result=number1-number2;
-				break;
-			case '/':
-				result=number1/number2;
-				break;
-			case '%':
-				result=number1%number2;
-				break;
-			case '*':
-				result=number1*number2;
-				break;
-			case '=':
-				result=number1;
-				break;
-		}
-
-*/
 
 
 
